@@ -14,6 +14,10 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $toDay = Carbon::today();
+
+        dd($toDay);
+        
         $orders = DB::table('orders')
             ->where('date','LIKE','%'. Carbon::today(). '%')->get();
         return response()->json($orders);
