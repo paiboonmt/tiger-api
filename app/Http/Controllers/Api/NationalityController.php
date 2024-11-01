@@ -6,15 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class NationalityController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users = DB::table('users')->get();
-        return response()->json($users);
+        $data = DB::table('tb_nationality')->get();
+        return response()->json($data);
     }
 
     /**
@@ -30,8 +30,8 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $users = DB::table('users')->where('id',$id)->first();
-        return response()->json($users);
+        $data = DB::table('tb_nationality')->where('nationality_id',$id)->first();
+        return response()->json($data);
     }
 
     /**

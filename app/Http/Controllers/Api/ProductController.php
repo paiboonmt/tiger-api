@@ -13,8 +13,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $produts = DB::table('products')->get();
-        return response()->json($produts);
+        $data = DB::table('products')->get();
+        return response()->json($data);
     }
 
     /**
@@ -30,7 +30,8 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = DB::table('products')->where('id',$id)->first();
+        return response()->json($data);
     }
 
     /**

@@ -6,15 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users = DB::table('users')->get();
-        return response()->json($users);
+        $orders = DB::table('orders')->limit(100)->get();
+        return response()->json($orders);
     }
 
     /**
@@ -30,8 +30,8 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $users = DB::table('users')->where('id',$id)->first();
-        return response()->json($users);
+        $order = DB::table('orders')->where('ref_order_id',$id)->first();
+        return response()->json($order);
     }
 
     /**
