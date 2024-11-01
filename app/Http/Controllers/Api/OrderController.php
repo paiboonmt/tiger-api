@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,7 +14,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = DB::table('orders')->limit(100)->get();
+        $orders = DB::table('orders')
+            ->where('date','LIKE','%'. Carbon::today(). '%')->get();
         return response()->json($orders);
     }
 
