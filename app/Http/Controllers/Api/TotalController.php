@@ -13,7 +13,8 @@ class TotalController extends Controller
      */
     public function index()
     {
-        $data = DB::table('totel')->limit(100)->get();
+        $toDay = date('Y-m-d');
+        $data = DB::table('totel')->where('date','LIKE','%'.$toDay.'%')->get();
         return response()->json($data);
     }
 
