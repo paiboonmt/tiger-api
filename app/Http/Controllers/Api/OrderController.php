@@ -16,7 +16,19 @@ class OrderController extends Controller
     {
         $toDay = date('Y-m-d');
         $orders = DB::table('orders')->where('date','LIKE','%'.$toDay.'%')->get();
-        return response()->json($orders);
+
+        $yesterdayRevenue = DB::table('orders')
+            ->whereDate('date' , Carbon::yesterday())->sum('total');
+        $todayRevenue = DB::table('orders')
+            ->whereDate('date' , Carbon::today())->sum('total');
+
+        return response()->json(
+            [   
+                'orders' => $orders,
+                'yesterdayRevenue' => $yesterdayRevenue,
+                'todayRevenue' => $todayRevenue,
+            ]
+        );
     }
 
     /**
