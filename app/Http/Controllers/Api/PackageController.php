@@ -13,7 +13,7 @@ class PackageController extends Controller
      */
     public function index()
     {
-        $data = DB::table('tb_package')->limit(100)->get();
+        $data = DB::table('tb_package')->get();
         return response()->json($data);
     }
 
