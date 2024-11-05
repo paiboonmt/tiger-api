@@ -42,6 +42,19 @@ class OrderController extends Controller
         return response()->json($data);
     }
 
+    public function countProducts(){
+        $date = date('Y-m-d');
+        $data = DB::table('orders')
+        ->join('order_details', 'order_details.order_id', '=', 'orders.id')
+        ->select('order_details.product_name', DB::raw('COUNT(order_details.product_name) as ccount'), DB::raw('SUM(orders.total) as sum'))
+        ->where(DB::raw('DATE(orders.date)'), 'LIKE', "%$date%")
+        ->groupBy('order_details.product_name')
+        ->orderBy('ccount', 'desc')
+        ->limit(6)
+        ->get();
+        return response()->json($data);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
