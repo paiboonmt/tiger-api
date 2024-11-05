@@ -50,7 +50,7 @@ class OrderController extends Controller
         ->where(DB::raw('DATE(orders.date)'), 'LIKE', "%$date%")
         ->groupBy('order_details.product_name')
         ->orderBy('ccount', 'desc')
-        ->limit(6)
+        ->limit(5)
         ->get();
         return response()->json($data);
     }
