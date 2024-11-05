@@ -29,6 +29,7 @@ Route::controller(ProductController::class)->group(function(){
 
 Route::controller(MemberController::class)->group(function(){
     Route::get('/members','index');
+    Route::get('/countCustomer','countCustomer');
     Route::get('/members/{id}','show');
 });
 

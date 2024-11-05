@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +16,15 @@ class MemberController extends Controller
     {
         $members = DB::table('member')->limit(100)->get();
         return response()->json($members);
+    }
+
+    public function countCustomer()
+    {
+        $countCustomer = DB::table('member')
+            ->where('status','=' ,'4')
+            ->where('exp_date', '>=' , Carbon::today())
+            ->count();
+        return response()->json($countCustomer);
     }
 
     /**
