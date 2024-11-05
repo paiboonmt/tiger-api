@@ -31,6 +31,17 @@ class OrderController extends Controller
         );
     }
 
+    public function sumOrders()
+    {
+        $data = DB::table('orders')
+            // ->select('date')
+            // ->sum('total')
+            // ->group('date')
+            // ->orderBy('desc')
+            ->get();
+        return response()->json($data);
+    }
+
     /**
      * Store a newly created resource in storage.
      */

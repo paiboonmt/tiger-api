@@ -35,7 +35,8 @@ Route::controller(MemberController::class)->group(function(){
 
 Route::controller(OrderController::class)->group(function(){
     Route::get('/orders','index');
-    Route::get('/orders/{id}','show');
+    Route::get('/sumOrders','sumOrders');
+    Route::get('/sumOrders/{id}','show');
 });
 
 Route::controller(OrderDetailController::class)->group(function(){
