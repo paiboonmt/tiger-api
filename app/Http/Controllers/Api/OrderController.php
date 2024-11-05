@@ -34,11 +34,11 @@ class OrderController extends Controller
     public function sumOrders()
     {
         $data = DB::table('orders')
-            // ->select('date')
-            // ->sum('total')
-            // ->group('date')
-            // ->orderBy('desc')
-            ->get();
+        ->select(DB::raw('DATE(`date`) as date'), DB::raw('SUM(total) as sum'))
+        ->groupBy(DB::raw('DATE(`date`)'))
+        ->orderBy('date', 'desc')
+        ->limit(5)
+        ->get();
         return response()->json($data);
     }
 
