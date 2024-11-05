@@ -57,6 +57,7 @@ Route::controller(PackageController::class)->group(function(){
 
 Route::controller(PaymentController::class)->group(function(){
     Route::get('/payments','index');
+    Route::get('/countPayment','countPayment');
     Route::get('/payments/{id}','show');
 });
 

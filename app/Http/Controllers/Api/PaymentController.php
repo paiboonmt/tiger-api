@@ -17,6 +17,18 @@ class PaymentController extends Controller
         return response()->json($data);
     }
 
+    public function countPayment(){
+        $date = date('Y-m-d');
+        $data = DB::table('orders')
+        ->select('pay', DB::raw('COUNT(pay) as count'), DB::raw('SUM(total) as sum'))
+        ->where('date', 'like', "%$date%")
+        ->groupBy('pay')
+        ->orderBy('sum', 'desc')
+        ->limit(5)
+        ->get();
+        return response()->json($data);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
