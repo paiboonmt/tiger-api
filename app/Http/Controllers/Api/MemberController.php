@@ -22,8 +22,7 @@ class MemberController extends Controller
     {
         $date = date('Y-m-d');
         $countCustomer = DB::table('member')
-            ->where('status','=' ,'4')
-            ->where('status','=' ,'2')
+            ->where('status','=' ,'4' || '2')
             ->where('exp_date', '>=' ,$date)
             ->count();
         return response()->json($countCustomer);
