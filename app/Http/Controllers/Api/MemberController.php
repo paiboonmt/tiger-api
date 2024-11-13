@@ -20,9 +20,10 @@ class MemberController extends Controller
 
     public function countCustomer()
     {
+        $date = date('Y-m-d');
         $countCustomer = DB::table('member')
             ->where('status','=' ,'4')
-            ->where('exp_date', '>=' , Carbon::today())
+            ->where('exp_date', '>=' ,$date)
             ->count();
         return response()->json($countCustomer);
     }
